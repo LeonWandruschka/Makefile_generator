@@ -1,12 +1,15 @@
 #ifndef FILES_H
 #define FILES_H
 
-// typedef
+// INCLUDES
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
 
-// enum
+#include "dataTypes.h"
 
 // function
-void writeToFile(char *filepath, char *data);
+void writeToCsvFile(char *filepath, userdata_t *data);
 void readFromFile(char *filepath, char *data, int lines);
 
 #endif //FILES_H

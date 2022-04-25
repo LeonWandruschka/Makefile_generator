@@ -1,17 +1,14 @@
-// INCLUDES
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
 
-// EXTERN INCLUDES
 #include "files.h"
 
+
 // FUNCTIONS
-void writeToFile(char *filepath, char *data)
+void writeToCsvFile(char *filepath, userdata_t *data)
 {
     FILE *fp;
     fp = fopen(filepath, "a");
-    fputs(data,fp);
+    // fputs(data,fp);
+    fprintf(fp,"%s, %s, %s, %s, %s\n",data->name,data->age,data->birthday,data->birthmonth,data->birthyear);
     fclose(fp);
 }
 
