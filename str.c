@@ -1,9 +1,6 @@
-#include <stdio.h>
-
 #include "str.h"
 
-
-int getStrLength(char *string)
+int getStrLen(char *string)
 {
     char checked = 0;
     int length = 0;
@@ -17,10 +14,10 @@ int getStrLength(char *string)
 }
 
 // Link the Filepath to the Projectpath
-void linkStrToPath(char *path, char *pathToProject, char *relativePathToFile)
+bool_t linkStrToPath(char *path, char *pathToProject, char *relativePathToFile)
 {
-    int lengthpathToProject = getStrLength(pathToProject);
-    int lengthrelativePathToFile = getStrLength(relativePathToFile);
+    int lengthpathToProject = getStrLen(pathToProject);
+    int lengthrelativePathToFile = getStrLen(relativePathToFile);
     int index = 0;
 
     for (int i = 0; i < lengthpathToProject; i++)
@@ -33,30 +30,31 @@ void linkStrToPath(char *path, char *pathToProject, char *relativePathToFile)
         path[j] =  relativePathToFile[index];
         index++;
     }
+
+    if(getStrLen(path) != lengthpathToProject + lengthrelativePathToFile)
+        return false;
+
+    return true;
+
+
 }
 
-//Link two strings
-void linkStr(char *stringOne, char *stringTwo)
+//Add a strinng to another one
+bool_t addToStr(char *existingString, char *stringToAdd)
 {
+    int existingStringlen = getStrLen(existingString);
+    int stringToAddlen = getStrLen(stringToAdd);
     int index = 0;
 
-    for (int i = getStrLength(stringOne); i < getStrLength(stringOne) + getStrLength(stringTwo); i++)
+    for (int i = existingStringlen; i < existingStringlen + stringToAddlen; i++)
     {
-        stringOne[i] =  stringTwo[index];
+        existingString[i] =  stringToAdd[index];
         index++;
     }
+
+    if (getStrLen(existingString) != existingStringlen + stringToAddlen)
+        return false;   // There was an error adding to the existing string!
+        
+    return true;
 }
 
-//Link two strings
-void linkStr1(char *stringOne, char *stringTwo)
-{
-    int lengthStrOne = getStrLength(stringOne);
-    int lengthStrTwo = getStrLength(stringTwo);
-    int index = 0;
-
-    for (int i = lengthStrOne; i < lengthStrOne + lengthStrTwo; i++)
-    {
-        stringOne[i] =  stringTwo[index];
-        index++;
-    }
-}
