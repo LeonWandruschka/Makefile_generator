@@ -1,3 +1,3 @@
 # C
 
-Learning C and creating a lot of Libraries.... So it's planned...
+Schreiben und lesen von Strings aus verschiedenen Dateien.
