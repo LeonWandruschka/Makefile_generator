@@ -13,4 +13,19 @@ enum
     SUCCESS = 1
 };
 
+typedef enum
+{
+    false = 0,
+    true = 1
+}bool_t;
+
+typedef struct
+{
+    char name[50];
+    char age[120];
+    char birthday[3];
+    char birthmonth[10];
+    char birthyear[4];
+}userdata_t;
+
 #endif //DATATYPES_H
