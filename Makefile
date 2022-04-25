@@ -13,3 +13,5 @@ clean:
 	rm main
 	rm str.o
 	rm files.o
+
+rebuild: clean build
