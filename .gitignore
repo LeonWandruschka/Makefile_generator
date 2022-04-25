@@ -59,3 +59,8 @@ path.dat
 main
 files.o
 str.o
+
+*.Files
+userdata.txt
+userdata.dat
+userdata.csv
