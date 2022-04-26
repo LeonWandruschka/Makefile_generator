@@ -1,8 +1,6 @@
 #ifndef STR_H
 #define STR_H
 
-#include <stdio.h>
-
 #include "dataTypes.h"
 
 

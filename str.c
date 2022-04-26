@@ -1,3 +1,5 @@
+
+
 #include "str.h"
 
 int getStrLen(char *string)

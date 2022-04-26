@@ -41,8 +41,8 @@ void userQuery(userdata_t *data)
 // Set path to work with specific files
 bool_t setPath(char *path)
 {
-    char relativePathToFile[] = "PFAD";             // Set relative path to file
-    char pathToProject[] = "PFAD";                  // Set path to project
+    char relativePathToFile[] = "file.data";             // Set relative path to file
+    char pathToProject[] = "";                  // Set path to project
     // Link the two give Path to each other
     linkStrToPath(path, pathToProject, relativePathToFile);
     if (getStrLen(relativePathToFile) + getStrLen(pathToProject) != getStrLen(path))
