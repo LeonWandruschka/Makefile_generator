@@ -50,26 +50,33 @@ bool_t setPath(char *path)
     return true;
 }
 
+
+
 /*<-- MAIN -->*/
 int main(int argc, char const *argv[])
 {
+    // Initialize Buffer for path to file
     char path[80] = {'\0'}; // Initialize string with \0
 
-    userdata_t userdaten;
+    // Variable for userdata(Own datatype in dataTypes.h)
+    userdata_t userdata;
 
+    // Buffer for String where current user data will be stored
     char userBuffer[255] = {'\0'};
+    // To create --> Memory allocation
 
-    initUserdata(&userdaten);
+    // Initalize userdata with \0
+    initUserdata(&userdata);
 
 
     // Create and check path
     setPath(path);
 
     // Get data from User
-    userQuery(&userdaten);
+    userQuery(&userdata);
 
     // Write userdata to csv File
-    writeToCsvFile(path, &userdaten);
+    writeToCsvFile(path, &userdata);
 
     // return 0
     return 0;
