@@ -5,21 +5,29 @@
 #include "files.h"
 
 
-// FUNCTIONS
-void writeToCsvFile(char *filepath, userdata_t *data)
+// Write to file
+void writeToFile(char *filepath, char *data)
 {
     FILE *fp;
-    fp = fopen(filepath, "a");
-    // fputs(data,fp);
-    fprintf(fp,"%s, %s, %s, %s, %s\n",data->name,data->age,data->birthday,data->birthmonth,data->birthyear);
+    fp = fopen(filepath, "w");
+    fprintf(fp,"%s\n",data);
     fclose(fp);
 }
 
-// MAX data LENGTH --> 255 (CHAR ARRAY) 
+// Append to file
+void appendToFile(const char * const filepath, char *data)
+{
+    FILE *fp;
+    fp = fopen(filepath, "a");
+    fprintf(fp,"%s\n", data);
+    fclose(fp);
+}
+
+// Read line from file
 void readFromFile(char *filepath, char *data, int lines)
 {
     FILE *fp;
     fp = fopen(filepath,"r");
-    fgets(data,lines,fp);
+    fscanf(fp,"%s",data);
     fclose(fp);
 }
