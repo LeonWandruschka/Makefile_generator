@@ -42,7 +42,7 @@ bool_t linkStrToPath(char *path, char *pathToProject, char *relativePathToFile)
 }
 
 //Add a strinng to another one
-bool_t addToStr(char *existingString, char *stringToAdd)
+bool_t appendToStr(char *existingString, char *stringToAdd)
 {
     int existingStringlen = getStrLen(existingString);
     int stringToAddlen = getStrLen(stringToAdd);
@@ -60,3 +60,17 @@ bool_t addToStr(char *existingString, char *stringToAdd)
     return true;
 }
 
+bool_t compareStr(char* const string1,char* const string2)
+{
+    int lenStr1 = getStrLen(string1);
+    int lenStr2 = getStrLen(string2);
+
+    if(lenStr1 == lenStr2)
+    {
+        if(string1[0] == string2[0])
+        {
+            return true;    
+        }
+    }
+    return false;
+}
