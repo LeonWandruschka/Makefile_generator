@@ -1,7 +1,8 @@
-
-build: str.o files.o
-	gcc main.c str.o files.o -o main
-
+#This file was automatically created!
+#For more information go to: https://github.com/LeonWandruschka/Makefile_generator 
+ 
+build: str.o files.o createmakefile.o 
+	gcc main.c str.o files.o createmakefile.o -o Make_Generator
 
 str.o:
 	gcc str.c -c
@@ -9,9 +10,13 @@ str.o:
 files.o:
 	gcc files.c -c
 
+createmakefile.o:
+	gcc createmakefile.c -c
+
 clean:
-	rm main
+	rm Make_Generator
 	rm str.o
 	rm files.o
+	rm createmakefile.o
 
 rebuild: clean build
