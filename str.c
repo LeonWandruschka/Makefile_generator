@@ -1,7 +1,7 @@
-
-
+// Include own libraries
 #include "str.h"
 
+// Get string length
 int getStrLen(char *string)
 {
     char checked = 0;
@@ -37,8 +37,6 @@ bool_t linkStrToPath(char *path, char *pathToProject, char *relativePathToFile)
         return false;
 
     return true;
-
-
 }
 
 //Add a strinng to another one
@@ -60,6 +58,7 @@ bool_t appendToStr(char *existingString, char *stringToAdd)
     return true;
 }
 
+// Compare first characteer of two strings
 bool_t compareStr(char* const string1,char* const string2)
 {
     int lenStr1 = getStrLen(string1);
