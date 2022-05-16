@@ -59,6 +59,7 @@ path.dat
 main
 files.o
 str.o
+createmakefile.o
 
 *.Files
 userdata.txt
