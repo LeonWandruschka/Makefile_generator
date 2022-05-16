@@ -4,9 +4,10 @@
 // INCLUDES
 #include "dataTypes.h"
 
-// function
+// FUNCTION
 void writeToFile(char *filepath, char *data);
 void appendToFile(const char * const filepath, char *data);
-void readFromFile(char *filepath, char *data, int lines);
+void readFromFile(char *filepath, char *data);
+void readLineFromFile(char *filepath, char *data, int line);
 
 #endif //FILES_H
