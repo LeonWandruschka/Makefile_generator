@@ -7,50 +7,84 @@
 #include "files.h"
 #include "str.h"
 
-
+// set array to \0
 void initUserdata(userdata_t *data)
 {
-    for (char i = 1; i < getStrLen(data->name)-1; i++)
-        data->name[i] = '\0';
-    for (char i = 0; i < getStrLen(data->age)-1; i++)
-        data->age[i] = '\0';
-    for (char i = 0; i < getStrLen(data->birthday)-1; i++)
-        data->birthday[i] = '\0';
-    for (char i = 0; i < getStrLen(data->birthmonth)-1; i++)
-        data->birthmonth[i] = '\0';
-    for (char i = 0; i < getStrLen(data->birthyear)-1; i++)
-        data->birthyear[i] = '\0';
-
+    for (char i = 1; i < getStrLen(data->mFileName)-1; i++)
+        data->mFileName[i] = '\0';
 }
 
-// User query for datainput
+// Get data from user
 void userQuery(userdata_t *data)
 {
-    printf("Please enter your Name: ");
-    scanf("%s",data->name);
-    printf("Please enter your age: ");
-    scanf("%s, ",data->age);
-    printf("Please enter the Day you are born(1-31): ");
-    scanf("%s, ",data->birthday);
-    printf("Please enter the Month you are born(1-12): ");
-    scanf("%s, ",data->birthmonth);
-    printf("Please enter the Month you are born(1920-2022): ");
-    scanf("%s",data->birthyear);
+    char libName[50];
+    char creationCheck[3];
+
+    // Get the name for the executable from the user
+    printf("Executeable name: ");
+    scanf(" %s", data->mFileName);
+
+    // Get number of libraries which should be linked
+    printf("Enter number of libraries that have to be linked: ");
+    scanf(" %d", &data->numLibs);
+
+    // Get the names, from the number of libraries that should be linked
+    for (char i = 0; i < data->numLibs; i++)
+    {
+        printf("Enter library name from %d. library: ",i+1);
+        scanf(" %s", libName);
+        appendToFile("temp",libName);
+    }
+    
+    // Check if a clean function should be created
+    while(1)
+    {
+        printf("Should a CLEAN function be created?(y/n): ");
+        scanf(" %c", creationCheck);
+        if(compareStr(creationCheck,"y"))
+        {
+            data->createClean = 1;
+            break;
+        }
+        else if (compareStr(creationCheck,"n"))
+        {
+            data->createClean = 0;
+            break;
+        }
+    }
+    creationCheck[0] = '\0';
+   
+   // Check if a rebuild function should be created 
+    while(1)
+    {
+        printf("Should a REBUILD function be created?(y/n): ");
+        scanf(" %s",creationCheck);
+        if(compareStr(creationCheck,"y"))
+        {
+            data->createRebuild = 1;
+            break;
+        }
+        else if (compareStr(creationCheck,"n"))
+        {
+            data->createRebuild = 0;
+            break;
+        }
+    }
 }
+
 
 // Set path to work with specific files
 bool_t setPath(char *path)
 {
-    char relativePathToFile[] = "file.data";             // Set relative path to file
+    char relativePathToFile[] = "file.data";    // Set relative path to file
     char pathToProject[] = "";                  // Set path to project
-    // Link the two give Path to each other
+    
+    // Link the two given Path
     linkStrToPath(path, pathToProject, relativePathToFile);
     if (getStrLen(relativePathToFile) + getStrLen(pathToProject) != getStrLen(path))
         return false;
     return true;
 }
-
-
 
 /*<-- MAIN -->*/
 int main(int argc, char const *argv[])
@@ -68,7 +102,6 @@ int main(int argc, char const *argv[])
     // Initalize userdata with \0
     initUserdata(&userdata);
 
-
     // Create and check path
     setPath(path);
 
@@ -76,7 +109,7 @@ int main(int argc, char const *argv[])
     userQuery(&userdata);
 
     // Write userdata to csv File
-    writeToCsvFile(path, &userdata);
+    // writeToFile(path, &userdata);
 
     // return 0
     return 0;
