@@ -1,11 +1,13 @@
+// Include std libraries
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 
-// Librarys
+// Include own libraries
 #include "dataTypes.h"
 #include "files.h"
 #include "str.h"
+#include "createMakefile.h"
 
 // set array to \0
 void initUserdata(userdata_t *data)
@@ -15,8 +17,9 @@ void initUserdata(userdata_t *data)
 }
 
 // Get data from user
-void userQuery(userdata_t *data)
+void userQuery(char *tempfileName, userdata_t *data)
 {
+    // Buffer for userinputs
     char libName[50];
     char creationCheck[3];
 
@@ -33,7 +36,8 @@ void userQuery(userdata_t *data)
     {
         printf("Enter library name from %d. library: ",i+1);
         scanf(" %s", libName);
-        appendToFile("temp",libName);
+        appendToFile(tempfileName,libName);
+        appendToFile(tempfileName, "\n");
     }
     
     // Check if a clean function should be created
@@ -72,45 +76,33 @@ void userQuery(userdata_t *data)
     }
 }
 
-
-// Set path to work with specific files
-bool_t setPath(char *path)
-{
-    char relativePathToFile[] = "file.data";    // Set relative path to file
-    char pathToProject[] = "";                  // Set path to project
-    
-    // Link the two given Path
-    linkStrToPath(path, pathToProject, relativePathToFile);
-    if (getStrLen(relativePathToFile) + getStrLen(pathToProject) != getStrLen(path))
-        return false;
-    return true;
-}
-
 /*<-- MAIN -->*/
 int main(int argc, char const *argv[])
 {
+    // Name for temporary filee
+    char tempfileName[] = "tmp";
+
+    // Makefile name
+    char *makePath = "Makefile";
+
     // Initialize Buffer for path to file
     char path[80] = {'\0'}; // Initialize string with \0
 
     // Variable for userdata(Own datatype in dataTypes.h)
     userdata_t userdata;
 
-    // Buffer for String where current user data will be stored
-    char userBuffer[255] = {'\0'};
-    // To create --> Memory allocation
-
     // Initalize userdata with \0
     initUserdata(&userdata);
 
-    // Create and check path
-    setPath(path);
-
     // Get data from User
-    userQuery(&userdata);
+    userQuery(tempfileName, &userdata);
 
-    // Write userdata to csv File
-    // writeToFile(path, &userdata);
+    // Create/write to Makefile
+    writeMakefile(tempfileName, makePath, &userdata);
 
+    // Remove temorary file
+    remove(tempfileName);
+    
     // return 0
     return 0;
 }
