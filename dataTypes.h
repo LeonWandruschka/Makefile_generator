@@ -1,18 +1,6 @@
 #ifndef DATATYPES_H
 #define DATATYPES_H
 
-enum
-{
-    FAILURE_char = '0',
-    SUCCESS_char = '1'
-};
-
-enum
-{
-    FAILURE = 0,
-    SUCCESS = 1
-};
-
 typedef enum
 {
     false = 0,
@@ -21,11 +9,10 @@ typedef enum
 
 typedef struct
 {
-    char name[50];
-    char age[120];
-    char birthday[3];
-    char birthmonth[10];
-    char birthyear[4];
+    char mFileName[50];
+    int numLibs;
+    int createClean;    //YES/NO
+    int createRebuild;  //YES/NO
 }userdata_t;
 
 #endif //DATATYPES_H
